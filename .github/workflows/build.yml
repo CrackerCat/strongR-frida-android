@@ -36,14 +36,13 @@ jobs:
             try {
               const releaseVersion = '${{ steps.pullFridaLatestRelease.outputs.FRIDA_VERSION }}'
               const releaseResponse = await github.repos.getReleaseByTag({
-                owner: 'hluwa',
-                repo: 'strongR-frida-android',
+                owner: '${{ secrets.GIT_OWNER }}',
+                repo: '${{ secrets.GIT_REPO }}',
                 tag: releaseVersion
               });
               const {
                 data: { tag_name: ver }
               } = releaseResponse;
-              console.log("ver=" + ver);
               if (ver == '${{ steps.pullFridaLatestRelease.outputs.FRIDA_VERSION }}'){
                   core.setOutput('ALREADY_RELEASE', '1');
               }
@@ -51,7 +50,6 @@ jobs:
                   core.setOutput('ALREADY_RELEASE', '0');
               }
             } catch (e) {
-              console.log("e=" + e);
               if(e.message == 'Not Found'){
                 core.setOutput('ALREADY_RELEASE', '0');
               }
@@ -111,9 +109,9 @@ jobs:
     - name: build frida for Android
       shell: bash
       run: |
-        git config --global user.name "hluwa"
-        git config --global user.email "hluwa888@gmail.com"
-        git clone https://github.com/AAAA-Project/Patchs
+        git config --global user.name "${{ secrets.GIT_NAME }}"
+        git config --global user.email "${{ secrets.GIT_EMAIL }}"
+        git clone ${{ secrets.PATCH_REPO }}
         export ANDROID_NDK_ROOT=${ANDROID_SDK_ROOT}/ndk-bundle
         git clone --recurse-submodules https://github.com/frida/frida
         cd frida/frida-core
@@ -133,8 +131,8 @@ jobs:
           try {
             const releaseVersion = '${{ needs.check_version.outputs.FRIDA_VERSION }}'
             const releaseResponse = await github.repos.getReleaseByTag({
-              owner: 'hluwa',
-              repo: 'strongR-frida-android',
+              owner: '${{ secrets.GIT_OWNER }}',
+              repo: '${{ secrets.GIT_REPO }}',
               tag: releaseVersion
             })
             const {
