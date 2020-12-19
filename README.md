@@ -16,6 +16,10 @@ Follow upstream auto build.
 |frida-core|0007-thread_gmain.patch|
 |frida-core|0008-protocol_unexpected_command.patch|
 
+## Download
+
+[Releases](https://github.com/hluwa/strongR-frida-android/releases/latest)
+
 ## References
 
 - [https://github.com/qtfreet00/AntiFrida](https://github.com/qtfreet00/AntiFrida)
