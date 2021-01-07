@@ -7,7 +7,7 @@ on:
   
 jobs:
   check_version:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     
     outputs:
       FRIDA_VERSION: ${{ steps.pullFridaLatestRelease.outputs.FRIDA_VERSION }}
@@ -61,7 +61,7 @@ jobs:
      
   create_release:
     needs: check_version
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     if: needs.check_version.outputs.ALREADY_RELEASE == '0'
 
     steps:
@@ -76,7 +76,7 @@ jobs:
           prerelease: false
 
   android_build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs: [check_version, create_release]
 
     steps:
