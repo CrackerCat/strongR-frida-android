@@ -1,6 +1,8 @@
 # strongR-frida-android
 
-Follow [frida](https://github/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
+Follow [FRIDA](https://github/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
+
+跟随 FRIDA 上游自动修补程序，并为 Android 构建反检测版本的 frida-server。
 
 **Hint: Don't fork this repository**
 
@@ -21,7 +23,7 @@ Follow [frida](https://github/frida/frida) upstream to automatic patch and build
 
 ## Download
 
-[Releases](https://github.com/hluwa/strongR-frida-android/releases/latest)
+[Latest Release](https://github.com/hluwa/strongR-frida-android/releases/latest)
 
 ## References
 
