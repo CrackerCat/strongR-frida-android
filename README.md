@@ -1,9 +1,12 @@
 # strongR-frida-android
 
-An anti detection version frida-server for android.
-Follow upstream auto build.
+Follow [frida](https://github/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
 
-## Git Patchs
+**Hint: Don't fork this repository**
+
+## Patchs
+
+[Git Patch Files](https://github.com/AAAA-Project/Patchs/tree/master/strongR-frida/frida-core)
 
 |module|name|
 |-|-|
@@ -22,6 +25,7 @@ Follow upstream auto build.
 
 ## References
 
+- [https://github.com/feicong/strong-frida](https://github.com/feicong/strong-frida)
 - [https://github.com/qtfreet00/AntiFrida](https://github.com/qtfreet00/AntiFrida)
 - [https://t.zsxq.com/miIunQN](https://t.zsxq.com/miIunQN)
 - [https://github.com/darvincisec/DetectFrida](https://github.com/darvincisec/DetectFrida)
@@ -34,7 +38,7 @@ Follow upstream auto build.
 - [@hellodword](https://github.com/hellodword)
 - [@qtfreet00](https://github.com/qtfreet00)
 
-## Discussions
+## Discussion
 
 <img src="img/1.png" width = "200" height = "260" alt="" align=center />
 
