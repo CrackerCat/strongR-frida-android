@@ -39,3 +39,26 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Check release version
+        id: checkReleaseVersion
+        uses: actions/github-script@v3.1.0
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            try {
+              const releaseVersion = '${{ needs.check_version.outputs.FRIDA_VERSION }}'
+              const releaseResponse = await github.repos.getReleaseByTag({
+                owner: '${{ secrets.GIT_OWNER }}',
+                repo: '${{ secrets.GIT_REPO }}',
+                tag: releaseVersion
+              })
+              const {
+                data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl }
+              } = releaseResponse;
+              core.setOutput('id', releaseId);
+              core.setOutput('html_url', htmlUrl);
+              core.setOutput('upload_url', uploadUrl);
+              core.setOutput('version', releaseVersion);
+            } catch (e) {
+              core.setFailed(e.message);
+            }
