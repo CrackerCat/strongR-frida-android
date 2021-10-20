@@ -12,7 +12,10 @@ jobs:
 
     steps:
       - name: test
+        id: pullFridaLatestRelease
         uses: actions/github-script@v3.1.0
+
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          core.setOutput('token', ${{secrets.GITHUB_TOKEN}});
+          script: |
+            core.setOutput('token', ${{secrets.GITHUB_TOKEN}});
