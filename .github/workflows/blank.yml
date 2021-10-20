@@ -42,13 +42,13 @@ jobs:
             
       - name: Check release version
         id: checkReleaseVersion
-        uses: actions/github-script@v5
+        uses: actions/github-script@v3.1.0
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             try {
               const releaseVersion = '15.1.4'
-              const releaseResponse = await github.repos.getReleaseByTag({
+              const releaseResponse = await github.repos.getLatestRelease({
                 owner: 'hzzheyang',
                 repo: 'strongR-frida-android',
                 tag: releaseVersion
