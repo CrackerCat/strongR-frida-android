@@ -39,11 +39,6 @@ jobs:
               owner: 'frida',
               repo: 'frida',
             })
-            const {
-              data: { tag_name: ver }
-            } = releaseResponse;
-            core.setOutput('FRIDA_VERSION', ver);
-            echo 'success'
             
       - name: Check release version
         id: checkReleaseVersion
