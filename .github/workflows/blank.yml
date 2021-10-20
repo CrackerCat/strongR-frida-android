@@ -56,6 +56,7 @@ jobs:
             } = releaseResponse;
             core.setOutput('FRIDA_VERSION', ver);
             echo 'success'
+            
       - name: Check release version
         id: checkReleaseVersion
         uses: actions/github-script@v5
