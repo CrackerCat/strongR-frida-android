@@ -41,7 +41,7 @@ jobs:
           echo test, and deploy your project.
       - name: Check release version
         id: checkReleaseVersion
-        uses: actions/github-script@v4.0.0
+        uses: actions/github-script@v3
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
