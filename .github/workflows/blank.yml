@@ -60,6 +60,11 @@ jobs:
               core.setOutput('html_url', htmlUrl);
               core.setOutput('upload_url', uploadUrl);
               core.setOutput('version', releaseVersion);
+              run: |
+                echo releaseId
+                echo htmlUrl
+                echo uploadUrl
+                echo releaseVersion
             } catch (e) {
               core.setFailed(e.message);
             }
