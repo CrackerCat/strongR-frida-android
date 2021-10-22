@@ -60,22 +60,22 @@ jobs:
               core.setOutput('html_url', htmlUrl);
               core.setOutput('upload_url', uploadUrl);
               core.setOutput('version', releaseVersion);
-              run: |
-                echo releaseId
-                echo htmlUrl
-                echo uploadUrl
-                echo releaseVersion
+              
             } catch (e) {
               core.setFailed(e.message);
             }
       - name: Run a one-line script
-        run: | 
-          echo ${{secrets.GITHUB_TOKEN}},token,
-          echo ${{secrets.GIT_NAME}},name,
-          echo ${{secrets.GIT_EMAIL}},email,
-          echo ${{secrets.GIT_CREDENTIALS}},cre,
-          echo ${{secrets.GIT_OWNER}},owner,
-          echo ${{secrets.GIT_REPO}},repo,
+        with:
+          html_url: '${{ steps.checkReleaseVersion.outputs.html_url }}'
+          id: '${{ steps.checkReleaseVersion.outputs.id }}'
+          upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
+          run: | 
+            echo ${{secrets.GITHUB_TOKEN}},token,
+            echo ${{secrets.GIT_NAME}},name,
+            echo ${{secrets.GIT_EMAIL}},email,
+            echo ${{secrets.GIT_CREDENTIALS}},cre,
+            echo ${{secrets.GIT_OWNER}},owner,
+            echo ${{secrets.GIT_REPO}},repo,
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
