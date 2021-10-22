@@ -60,10 +60,6 @@ jobs:
               core.setOutput('html_url', htmlUrl);
               core.setOutput('upload_url', uploadUrl);
               core.setOutput('version', releaseVersion);
-              echo ${releaseId},
-              echo ${htmlUrl},
-              echo ${uploadUrl},
-              echo ${releaseVersiom},
             } catch (e) {
               core.setFailed(e.message);
             }
