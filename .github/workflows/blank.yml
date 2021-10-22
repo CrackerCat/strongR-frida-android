@@ -65,6 +65,8 @@ jobs:
               core.setFailed(e.message);
             }
       - name: Run a one-line script
+        id: runscript
+        uses: actions/github-script@v3.1.0
         with:
           html_url: '${{ steps.checkReleaseVersion.outputs.html_url }}'
           id: '${{ steps.checkReleaseVersion.outputs.id }}'
