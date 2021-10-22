@@ -66,10 +66,15 @@ jobs:
             }
       - name: Upload android arm frida-server for strongR-frida
         uses: actions/upload-release-asset@v1.0.2
+        
         env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         debug: true
         with:
           upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
+          asset_path: '${{ github.workspace }}/frida/build/frida-android-arm/bin/frida-server'
+          asset_name: 'hluda-server-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-arm'
+          asset_content_type: application/octet-stream
           
       - name: Run a one-line script
         id: runscript
