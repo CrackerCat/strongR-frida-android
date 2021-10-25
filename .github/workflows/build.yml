@@ -136,7 +136,7 @@ jobs:
         script: |
           try {
             const releaseVersion = '${{ needs.check_version.outputs.FRIDA_VERSION }}'
-            const releaseResponse = await github.repos.getLatestRelease({
+            const releaseResponse = await github.repos.getReleaseByTag({
               owner: 'hzzheyang',
               repo: 'strongR-frida-android',
               tag: releaseVersion
