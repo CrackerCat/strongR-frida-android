@@ -196,22 +196,4 @@ jobs:
         asset_name: 'hluda-server-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-x86_64'
         asset_content_type: application/octet-stream
     
-    - name: Upload android arm frida-gadget for strongR-frida
-      uses: actions/upload-release-asset@v1.0.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
-        asset_path: '${{ github.workspace }}/frida/build/frida-android-arm/lib/frida-gadget.so'
-        asset_name: 'hluda-gadget-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-arm.so'
-        asset_content_type: application/octet-stream
-
-    - name: Upload android arm64 frida-gadget for strongR-frida
-      uses: actions/upload-release-asset@v1.0.2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
-        asset_path: '${{ github.workspace }}/frida/build/frida-android-arm64/lib/frida-gadget.so'
-        asset_name: 'hluda-gadget-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-arm64.so.xz'
-        asset_content_type: application/octet-stream
+   
