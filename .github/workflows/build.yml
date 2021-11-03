@@ -138,8 +138,8 @@ jobs:
           try {
             const releaseVersion = '${{ needs.check_version.outputs.FRIDA_VERSION }}'
             const releaseResponse = await github.repos.getReleaseByTag({
-              owner: 'hzzheyang',
-              repo: 'strongR-frida-android',
+              owner: '${{ secrets.GIT_OWNER }}',
+              repo: '${{ secrets.GIT_REPO }}',
               tag: releaseVersion
             })
             const {
