@@ -97,7 +97,7 @@ jobs:
 
     - name: Setup Android NDK
       id: setup-ndk
-      uses: nttld/setup-ndk@v1.0.3
+      uses: nttld/setup-ndk@v1.0.6
       with:
         ndk-version: r24
 
