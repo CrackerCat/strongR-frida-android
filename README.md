@@ -1,3 +1,5 @@
+## 15.2.x以后的版本编译报错了，本人无力解决，如果想继续使用hluda大佬的魔改版本，就使用15.1.x以前的吧
+
 # strongR-frida-android
 
 Follow [FRIDA](https://github.com/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
