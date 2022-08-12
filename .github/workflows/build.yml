@@ -80,11 +80,12 @@ jobs:
     needs: [check_version, create_release]
 
     steps:
-    - uses: actions/checkout@v2.3.4
-
-    - uses: actions/setup-node@v2.1.4
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: '10'
+        node-version: 16
+    - run: npm ci
+    - run: npm test
 
     - uses: fusion-engineering/setup-git-credentials@v2
       with:
