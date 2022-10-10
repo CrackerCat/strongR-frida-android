@@ -1,12 +1,3 @@
-## 又好使了，嘻嘻
-
-## ~~更新16.0了，patch也不好使了，不知道怎么解决了，直接去大胡子那里下载最新的好了 https://github.com/frida/frida~~ ##
-
-## ~~改了一下node版本，又好使了，哈哈~~
-
-## ~~15.2.x以后的版本编译报错了，本人无力解决，如果想继续使用hluwa大佬的魔改版本，就使用15.1.x以前的吧~~
-
-
 # strongR-frida-android
 
 Follow [FRIDA](https://github.com/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
