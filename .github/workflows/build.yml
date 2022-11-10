@@ -80,11 +80,10 @@ jobs:
     needs: [check_version, create_release]
 
     steps:
-    - uses: actions/checkout@v2.3.4
-
-    - uses: actions/setup-node@v2.1.4
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
-        node-version: '10'
+        node-version: 16
 
     - uses: fusion-engineering/setup-git-credentials@v2
       with:
@@ -99,7 +98,7 @@ jobs:
       id: setup-ndk
       uses: nttld/setup-ndk@v1.0.6
       with:
-        ndk-version: r24-beta1
+        ndk-version: r25b
 
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
