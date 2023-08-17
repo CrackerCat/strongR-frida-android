@@ -1,3 +1,4 @@
+更新了一下patch，main报错的问题应该没有了
 # strongR-frida-android
 
 Follow [FRIDA](https://github.com/frida/frida) upstream to automatic patch and build an anti-detection version of frida-server for android.
