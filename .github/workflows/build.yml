@@ -122,7 +122,7 @@ jobs:
         cd frida/frida-core
         git am ../../Patchs/strongR-frida/frida-core/*.patch
         cd ../frida-gum/gum
-        git am ../../../Patch/Patchs/strongR-frida/frida-gum/*.patch
+        git am ../../../Patchs/strongR-frida/frida-gum/*.patch
         cd ../../
         make core-android-arm
         make core-android-arm64
