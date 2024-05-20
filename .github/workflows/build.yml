@@ -80,10 +80,10 @@ jobs:
     needs: [check_version, create_release]
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 18
 
     - uses: fusion-engineering/setup-git-credentials@v2
       with:
@@ -127,9 +127,13 @@ jobs:
         cd frida/subprojects/frida-gum/gum
         git am ../../../../Patchs/strongR-frida/frida-gum/*.patch
         cd ../../../
+        ./configure --host=android-arm
         make core-android-arm
+        ./configure --host=android-arm64
         make core-android-arm64
+        ./configure --host=android-x86
         make core-android-x86
+        ./configure --host=android-x86_64
         make core-android-x86_64
 
 
