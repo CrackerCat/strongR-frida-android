@@ -134,16 +134,11 @@ jobs:
         cd ../../../
         
     - name: Configure
-      run: >-
-          ./configure
-          "--prefix=/home/runner/work/frida/dist"
-          --host=android-${{ matrix.arch }}
-          --enable-portal
-          --
-          -Dfrida-gum:devkits=gum,gumjs
-          -Dfrida-core:devkits=core
-    - name: Compile
-      run: make
+      shell: bash
+      run: |
+          cd frida
+          ./configure "--prefix=/home/runner/work/frida/dist" --host=android-${{ matrix.arch }} --enable-portal -- -Dfrida-gum:devkits=gum,gumjs -Dfrida-core:devkits=core
+          make
 
     - name: Check release version
       id: checkReleaseVersion
