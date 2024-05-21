@@ -101,7 +101,6 @@ jobs:
         ndk-version: r25b
 
     - name: Set up Python 3.8
-      uses: actions/checkout@v4
       uses: actions/setup-python@v5.1.0
       with:
         python-version: 3.10
