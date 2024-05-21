@@ -128,13 +128,6 @@ jobs:
         cd frida/subprojects/frida-gum/gum
         git am ../../../../Patchs/strongR-frida/frida-gum/*.patch
         cd ../../../
-        ./configure --host=android-arm
-        make
-        ./configure --host=android-arm64
-        make
-        ./configure --host=android-x86
-        make
-        ./configure --host=android-x86_64
         make
 
 
