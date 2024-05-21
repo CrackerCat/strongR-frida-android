@@ -136,6 +136,7 @@ jobs:
     - name: Configure
       run: >-
           ./configure
+          "--prefix=/home/runner/work/frida/dist"
           --host=android-${{ matrix.arch }}
           --enable-portal
           --
