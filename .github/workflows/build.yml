@@ -129,13 +129,13 @@ jobs:
         git am ../../../../Patchs/strongR-frida/frida-gum/*.patch
         cd ../../../
         ./configure --host=android-arm
-        make core-android-arm
+        make
         ./configure --host=android-arm64
-        make core-android-arm64
+        make
         ./configure --host=android-x86
-        make core-android-x86
+        make
         ./configure --host=android-x86_64
-        make core-android-x86_64
+        make
 
 
     - name: Check release version
