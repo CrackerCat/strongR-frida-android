@@ -77,7 +77,7 @@ jobs:
 
   android_build:
     runs-on: ubuntu-20.04
-    needs: [check_version, create_release, sdk-linux, sdk-android-32, sdk-android-64]
+    needs: [check_version, create_release]
     strategy:
       matrix:
         arch: [x86, x86_64, arm, arm64]
