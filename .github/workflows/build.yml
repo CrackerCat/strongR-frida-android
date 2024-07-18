@@ -76,14 +76,18 @@ jobs:
           prerelease: false
 
   android_build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: [check_version, create_release]
+    strategy:
+      matrix:
+        arch: [x86, x86_64, arm, arm64]
+      fail-fast: false
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
       with:
-        node-version: 16
+        node-version: 20
 
     - uses: fusion-engineering/setup-git-credentials@v2
       with:
@@ -96,20 +100,22 @@ jobs:
 
     - name: Setup Android NDK
       id: setup-ndk
-      uses: nttld/setup-ndk@v1.0.6
+      uses: nttld/setup-ndk@v1
       with:
         ndk-version: r25b
 
-    - name: Set up Python 3.8
+    - name: Set up Python 3.11
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.11
 
     - name: install dependencies
       run: |
         sudo apt-get update && DEBIAN_FRONTEND=noninteractive sudo apt-get install build-essential tree ninja-build gcc-multilib g++-multilib lib32stdc++-9-dev flex bison xz-utils ruby ruby-dev python3-requests python3-setuptools python3-dev python3-pip libc6-dev libc6-dev-i386 -y
-        sudo gem install fpm -v 1.11.0 --no-document
+        sudo gem update --system
+        sudo gem install fpm -v 1.17.0 --no-document
         python3 -m pip install lief
+        python3 -m pip install graphlib
 
     - name: build frida for Android
       shell: bash
@@ -119,14 +125,23 @@ jobs:
         git clone ${{ secrets.PATCH_REPO }}
         export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
         git clone --recurse-submodules https://github.com/frida/frida
-        cd frida/frida-core
-        git am ../../Patchs/strongR-frida/frida-core/*.patch
-        cd ../
-        make core-android-arm
-        make core-android-arm64
-        make core-android-x86
-        make core-android-x86_64
+        cd frida/subprojects/frida-core
+        git am ../../../Patchs/strongR-frida/frida-core/*.patch
+    - name: two step patch   
+      shell: bash
+      run: |
+        cd frida/subprojects/frida-gum/gum
+        git am ../../../../Patchs/strongR-frida/frida-gum/*.patch
+        cd ../../../
+        
+    - name: Configure
+      shell: bash
+      run: |
+          cd frida
+          ./configure  --host=android-${{ matrix.arch }} --enable-portal -- -Dfrida-gum:devkits=gum,gumjs -Dfrida-core:devkits=core
 
+    - name: Compile
+      run: make
 
     - name: Check release version
       id: checkReleaseVersion
@@ -276,3 +291,22 @@ jobs:
         asset_name: 'hluda-gadget-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-arm64.so.xz'
         asset_content_type: application/octet-stream
    
+    - name: Upload android x86 frida-gadget for strongR-frida
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
+        asset_path: '${{ github.workspace }}/frida/build/frida-android-x86/lib/frida/32/frida-gadget.so.xz'
+        asset_name: 'hluda-gadget-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-x86.so.xz'
+        asset_content_type: application/octet-stream
+
+    - name: Upload android x86_64 frida-gadget for strongR-frida
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: '${{ steps.checkReleaseVersion.outputs.upload_url }}'
+        asset_path: '${{ github.workspace }}/frida/build/frida-android-x86_64/lib/frida/64/frida-gadget.so.xz'
+        asset_name: 'hluda-gadget-${{ needs.check_version.outputs.FRIDA_VERSION }}-android-x86_64.so.xz'
+        asset_content_type: application/octet-stream
